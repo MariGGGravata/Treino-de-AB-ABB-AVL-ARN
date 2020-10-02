@@ -1,0 +1,140 @@
+MAIN.C
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stddef.h>
+#include "arvore.h"
+
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+
+	
+int main(int argc, char *argv[]) {
+	
+	TNo *raiz;
+	raiz = criar(1);
+	exibe(raiz);
+	raiz->esq = criar(2);
+	raiz->dir = criar(3);
+	raiz->esq->esq = criar(4);
+	raiz->esq->dir = criar(5);
+	exibeEsq(raiz);
+	
+	
+	TNoN *raizN;
+	raizN = criarN(1, 3);
+	exibeN(raizN);
+	raizN->filhos[0] = criarN(2,2);
+	raizN->filhos[1] = criarN(3,1);
+	raizN->filhos[2] = criarN(4, 5);	
+	
+	
+	return 0;
+}
+
+
+ARVORE.H
+
+
+typedef struct No TNo;
+typedef struct NoN TNoN;
+
+struct No{
+	
+	int valor;
+	TNo *esq;
+	TNo *dir;
+	
+};
+
+struct NoN{
+	
+	int valor;
+	TNoN **filhos;
+	
+};
+
+TNo *criar(int v);
+TNoN *criarN(int v, int qtd);
+void exibe(TNo *r);
+void exibeN(TNoN *r);
+void exibeEsq(TNo *r);
+void preordem(TNo *r);
+
+
+
+ARVORE.C
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stddef.h>
+#include "arvore.h"
+
+
+TNo *criar(int v){
+	
+	TNo *r = (TNo *)malloc(sizeof(TNo));
+	r->valor = v;
+	r->esq = NULL;
+	r->dir = NULL;
+	
+	return r; 
+}
+
+
+TNoN *criarN(int v, int qtd){
+	
+	TNoN *r = (TNoN *)malloc(sizeof(TNoN));
+	r->valor = v;
+	r->filhos = (TNoN **)malloc(qtd * sizeof(TNoN *));
+	
+	int i;
+	
+	for( i = 0; i < qtd; i++){
+		
+		r->filhos[i] = NULL;
+		
+	}
+	
+	return r;
+}
+
+void exibe(TNo *r){
+	
+	printf("%d", r->valor);
+	printf("\n--------------\n");
+	
+}
+
+void exibeN(TNoN *r){
+	
+	printf("%d", r->valor);
+	printf("\n--------------\n");
+	
+}
+
+
+void exibeEsq(TNo *r){
+	
+	TNo *aux;
+	aux = r;
+	
+	while(aux != NULL){
+		
+		exibe(aux);
+		aux = aux->esq;
+		
+	}
+	
+}
+
+void preordem(TNo *r){
+	
+	printf("%d", r->valor);
+	
+	int i;
+	
+	if(i = 0; )
+	
+}
+

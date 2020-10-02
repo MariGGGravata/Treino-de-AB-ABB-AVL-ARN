@@ -1,0 +1,47 @@
+
+typedef struct NoN TNoN;
+
+struct NoN{
+	
+	int valor;
+	TNoN **filhos;
+	
+};
+
+TNoN *criarN(int v, int qtd);
+void exibeN(TNoN *r);
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stddef.h>
+#include "arvore.h"
+
+
+
+TNoN *criarN(int v, int qtd){
+	
+	TNoN *r = (TNoN *)malloc(sizeof(TNoN));
+	r->valor = v;
+	r->filhos = (TNoN **)malloc(qtd * sizeof(TNoN *));
+	
+	int i;
+	
+	for( i = 0; i < qtd; i++){
+		
+		r->filhos[i] = NULL;
+		
+	}
+	
+	return r;
+}
+
+
+void exibeN(TNoN *r){
+	
+	printf("%d", r->valor);
+	printf("\n--------------\n");
+	
+}
+

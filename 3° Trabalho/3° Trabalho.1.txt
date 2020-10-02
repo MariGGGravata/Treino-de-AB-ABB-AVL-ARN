@@ -1,0 +1,62 @@
+1ª QUESTÃO:
+
+arvore.h
+
+
+
+typedef struct NoT TNoT;
+
+struct NoT{
+	
+	int valor;
+	TNoT *esq;
+	TNoT *dir;
+	TNoT *meio;
+	
+};
+
+TNoT *criarT(int v);
+void posordemT(TNoT *r);
+
+
+arvore.c
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stddef.h>
+#include "arvore.h"
+
+TNoT *criarT(int v){
+	
+	TNoT *r = (TNoT *)malloc(sizeof(TNoT));
+	r->valor = v;
+	r->esq = NULL;
+	r->dir = NULL;
+	r->meio = NULL;
+	
+	return r;	
+}
+
+void posordemT(TNoT *r){
+	
+	if(r->esq != NULL){
+		
+		posordemT(r->esq);
+		
+	}
+	
+	if(r->meio != NULL){
+		
+		posordemT(r->meio);
+		
+	}
+	
+	if(r->dir != NULL){
+		
+		posordemT(r->dir);
+		
+	}
+	
+	printf("%d\n", r->valor);
+}

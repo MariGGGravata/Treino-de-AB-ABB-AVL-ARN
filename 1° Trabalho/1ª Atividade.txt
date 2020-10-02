@@ -1,0 +1,90 @@
+1ª) Questão:
+
+int main(int argc, char *argv[]) {
+	
+	int a, *b;
+	
+	printf("Qual o valor atribuido a a?\n");
+	scanf("%d", &a);
+	
+	b = (int*)malloc(sizeof(int));
+	b = &a; //apontando para a variável a
+	*b = *b * 2;
+	printf("Valor de a: %d\nValor de b: %d\n", a, *b);
+	b = (int*)malloc(sizeof(int));
+	printf("Qual o valor atribuido a b?\n");
+	scanf("%d", &b);
+	b = &b;
+	printf("Valor de a: %d\nValor de b: %d, %d\n", a, *b);
+	
+	return 0;
+}
+
+2ª) Questão:
+
+main.c
+
+
+TCarteira *cart;
+	
+	cart = criar(0.0);
+	
+	mostrar(cart);
+	printf("\n-----------------\n");
+	depositar(cart, 10.50);
+	mostrar(cart);
+	retirar(cart, 5.33);
+	printf("\n-----------------\n");
+	mostrar(cart);
+
+carteira.h
+
+
+typedef struct Carteira TCarteira;
+
+TCarteira * criar(float v);
+void depositar(TCarteira *c, float v);
+void retirar(TCarteira *c, float v);
+float mostrar(TCarteira *c);
+
+
+carteira.c
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stddef.h>
+#include "carteira.h"
+
+struct Carteira{
+	
+	float valor;
+	
+};
+
+TCarteira * criar(float v){
+	
+	TCarteira *c = (TCarteira *)malloc(sizeof(TCarteira));
+	c->valor = v;
+	
+	return c;
+	
+}
+
+void depositar(TCarteira *c, float v){
+	
+	c->valor = c->valor + v;
+	
+}
+
+void retirar(TCarteira *c, float v){
+	
+	c->valor = c->valor - v;
+	
+}
+
+float mostrar(TCarteira *c){
+	
+	printf("%.2f", c->valor);
+	
+}
